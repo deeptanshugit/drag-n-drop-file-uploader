@@ -79,21 +79,21 @@ export default {
   },
   methods: {
     openFileInput() {
-      // Trigger a click event on the hidden file input
+      // Triggering a click event on the hidden file input
       this.$refs.fileInput.click();
     },
     handleDragOver() {
-      // Prevent default behavior to enable dropping
+      // Preventing default behavior to enable dropping
       this.isDragging = true;
       this.uploadText = "Upload More Files";
     },
     handleDragEnter() {
-      // Highlight drop area when a file is dragged over it
+      // Highlighting drop area when a file is dragged over it
       this.isDragging = true;
       this.uploadText = "Upload More Files";
     },
     handleDragLeave() {
-      // Remove highlight when a file is dragged out of the drop area
+      // Remove highlighting when a file is dragged out of the drop area
       this.isDragging = false;
       this.uploadText = "Drag and drop files here or click to select files";
     },
@@ -103,10 +103,9 @@ export default {
       this.uploadText = "Upload More Files";
     },
     handleFileInput() {
-      // Handle file selection using the file input element
+      // Handling file selection using the file input element
       const newFiles = Array.from(this.$refs.fileInput.files);
       this.files = [...this.files, ...newFiles];
-      console.log(this.files);
       this.uploadText = "Upload More Files";
     },
     formatSize(bytes) {
@@ -130,8 +129,8 @@ export default {
       const promises = this.files.map((file) => {
         const uploadParams = {
           Bucket: "drag-drop-file-uploads",
-          Key: file.name, // Set the Key to the name of the file
-          Body: file, // Set the Body to the content of the file
+          Key: file.name,
+          Body: file,
         };
 
         return s3
@@ -146,7 +145,7 @@ export default {
           .promise()
           .then(() => {
             completedFiles++;
-            // Set the ACL of the uploaded file to 'public-read'
+            // Setting the ACL of the uploaded file to 'public-read'
             const aclParams = {
               Bucket: "drag-drop-file-uploads",
               Key: file.name,
@@ -266,7 +265,7 @@ export default {
   right: 15%;
   left: 50%;
   transform: translateX(-50%);
-  color: #000; /* Adjust the color based on your design */
+  color: #000;
   font-weight: bold;
 }
 
